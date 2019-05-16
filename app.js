@@ -4,26 +4,15 @@ const bodyParser = require('body-parser')
 // const moment = require('moment');
 const mongoose = require('mongoose')
 const methodOverride = require('method-override')
+const Post = require('./models/post')
 
 //APP CONFIG
-mongoose.connect('mongodb://localhost/time_tracker_app', { useNewUrlParser: true, useFindAndModify: false  })
+mongoose.connect('mongodb://localhost/learning_progress_app', { useNewUrlParser: true, useFindAndModify: false  })
 app.use(express.static("public"))
 app.set('view engine', 'ejs')
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
 
-
-//MONGOOSE CONFIG
-let timeSchema = new mongoose.Schema({
-    date: String,
-    start: String,
-    end: String,
-    notes: String,
-    totalMin: String,
-    timeString: String 
-})
-
-var Timestamp = mongoose.model('Timestamp', timeSchema)
 
 let dbdata = []
 
@@ -39,7 +28,7 @@ app.get('/', (req,res)=>{
 
 //INDEX
 app.get('/posts', (req, res) =>{
-    Timestamp.find({}, (err, allTimes) =>{
+    Post.find({}, (err, allTimes) =>{
         if(err){
             console.log(err)
         } else {
@@ -58,7 +47,7 @@ app.get('/posts/new', (req, res)=>{
 
 //CREATE
 app.post('/posts', (req, res)=>{
-    Timestamp.create(req.body.post, (err, newTime) => {
+    Post.create(req.body.post, (err, newTime) => {
         if (err) {
             console.log(err)
         } else {
@@ -69,7 +58,7 @@ app.post('/posts', (req, res)=>{
 
 //SHOW
 app.get('/posts/:id', (req, res)=>{
-    Timestamp.findById(req.params.id, (err, foundPost)=>{
+    Post.findById(req.params.id, (err, foundPost)=>{
         if(err){
             res.redirect('/posts')
         } else{
@@ -80,7 +69,7 @@ app.get('/posts/:id', (req, res)=>{
 
 //EDIT
 app.get('/posts/:id/edit', (req, res)=>{
-    Timestamp.findById(req.params.id, (err, foundPost)=>{
+    Post.findById(req.params.id, (err, foundPost)=>{
         if(err){
             res.redirect('posts')
         } else{
@@ -91,7 +80,7 @@ app.get('/posts/:id/edit', (req, res)=>{
 
 //UPDATE
 app.put('/posts/:id', (req, res)=>{
-    Timestamp.findByIdAndUpdate(req.params.id, req.body.post, (err, updatedPost)=>{
+    Post.findByIdAndUpdate(req.params.id, req.body.post, (err, updatedPost)=>{
         if(err){
             res.redirect('/posts')
         } else{
@@ -102,7 +91,7 @@ app.put('/posts/:id', (req, res)=>{
 
 //DESTROY
 app.delete('/posts/:id', (req, res)=>{
-    Timestamp.findByIdAndRemove(req.params.id, (err)=>{
+    Post.findByIdAndRemove(req.params.id, (err)=>{
         if(err){
             res.redirect('/posts')
         } else{
@@ -116,9 +105,9 @@ app.listen(3000, ()=>{
 })
 
 function calcTimeString(total) {
-    var totalHr = total / 60
-    var diffHours = Math.floor(totalHr)
-    var diffMin = Math.floor((totalHr % 1) * 60)
+    let totalHr = total / 60
+    let diffHours = Math.floor(totalHr)
+    let diffMin = Math.floor((totalHr % 1) * 60)
     return (`${diffHours}hr - ${diffMin}min`)
 }
 
