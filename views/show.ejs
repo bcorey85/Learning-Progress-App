@@ -1,0 +1,22 @@
+<% include partials/header %>
+
+<div class="container">
+    <div class="post-large">
+        <h1><%= post.date %></h1>
+        <div>
+            <%= post.notes %>
+        </div>
+        <div>
+            <%= post.start %>
+            <%= post.end %>
+            <%= post.totalMin %>
+            <%= post.timeString %>
+        </div>
+    </div>
+  
+    
+    <a href="/posts">Back</a>
+    <a href="/posts/<%= post._id %>/edit">Edit</a>
+</div>
+
+<% include partials/footer %>

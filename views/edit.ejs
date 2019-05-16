@@ -1,0 +1,30 @@
+<% include partials/header %>
+<form action="/posts/<%= post._id %>?_method=PUT" METHOD="POST">
+        <div>
+            <input type="text" name="post[date]" value="<%= post.date %>" required>
+        </div>
+        <div>
+            <textarea name="post[notes]" id="" cols="30" rows="10" required><%=post.notes%></textarea>
+        </div>
+        <div>
+            <input type="text" name="post[start]" onchange="updateStart()" value="<%= post.start %>" id="startInput" required>
+            <input type="text" name="post[end]" onchange="updateEnd()" value="<%= post.end %>" id="endInput" required>
+        </div>
+        
+        <div>
+            <input type="text" name="post[totalMin]" value="<%= post.totalMin%>" id="totalMin" readonly>
+            <input type="text" name="post[timeString]" value="<%= post.timeString%>" id="timeString" readonly>
+        </div>
+        <div>
+            <input type="submit">
+        </div>
+</form>
+<form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+    <button>Delete</button>
+</form>
+<a href="/posts">Back</a>
+<script src="/moment.js"></script>
+<script src="/script.js"></script>
+
+<% include partials/footer %>
+

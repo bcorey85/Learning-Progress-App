@@ -1,0 +1,21 @@
+.container{
+    max-width: 700px;
+    margin: auto;
+    text-align: center;
+}
+.post-thumbnail{
+    border: 1px solid gray;
+    margin: 2em auto;
+    padding: 1em;
+    display: inline-block;
+    width: 200px;
+    height: 250px;
+    box-sizing: border-box;
+    vertical-align: top;
+}
+
+.post-large{
+    border: 1px solid gray;
+    margin: 2em auto;
+    padding: 1em; 
+}

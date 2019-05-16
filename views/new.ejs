@@ -1,0 +1,25 @@
+<% include partials/header %>
+    <form action="/posts" METHOD="POST">
+        <div>
+            <input type="text" name="post[date]" value="" id="dateInput" placeholder="Date" required>
+        </div>
+        <div>
+            <textarea name="post[notes]" id="" cols="30" rows="10" required placeholder="Notes"></textarea>
+        </div>
+        <div>
+            <input type="text" name="post[start]" onchange="updateStart()" placeholder="Start Time" id="startInput" required>
+            <input type="text" name="post[end]" onchange="updateEnd()" placeholder="End Time" id="endInput" required>
+        </div>
+
+        <div>
+            <input type="text" name="post[totalMin]" placeholder="Total Mins" id="totalMin" readonly>
+            <input type="text" name="post[timeString]" placeholder="Total Time" id="timeString" readonly>
+        </div>
+        <div>
+        <input type="submit">
+        </div>    
+    </form>
+    <a href="/posts">Cancel</a>
+<script src="/moment.js"></script>
+<script src="/script.js"></script>
+<% include partials/footer %>
