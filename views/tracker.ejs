@@ -1,26 +1,44 @@
 <% include partials/header %>
 
 
-<div class="container">
-    <H1>Tracker Page</H1>
-    <a href="posts/new">New Time</a><br>
+<div class="ui container center aligned">
+    <div class="ui header">
+        <h3>
+            Total Learning Time:
+        </h3>
+        <p> <%= overallData.overallString %></p>
+    </div>
     <% dbdata.forEach((i)=>{ %>
-        <div class="post-thumbnail">
-            <h3><%= i.date %></h3>
-            <p><%= i.start %> - <%= i.end %></p>
-            <p><%= i.notes.substring(0,20) %>...</p>
-            <p><%= i.timeString %></p>
-            <div>
-                <a href="/posts/<%= i._id %>">More Info</a>
+        <div class="ui card">
+            <div class="content">
+                <div class="ui header">
+                <%= i.date %>
+                </div>
             </div>
+            <div class="content center aligned">
+                <div class="meta"><%= i.start %> - <%= i.end %></div>
+
+                <div class="description">
+                    <% if(i.notes.length > 120){ %>
+                       <%= i.notes.substring(0,120) + '...' %>
+                    <% } else{ %>
+                        <%= i.notes %>
+                    <% } %>                    
+                </div>
+
+            </div>
+            <div class="extra content center aligned"><%= i.timeString %></div>
+
+            <a href="/posts/<%= i._id %>">
+                <div class="ui bottom attached animated teal button">
+                    <div class="visible content">More Info</div>
+                        
+                    <div class="hidden content"><i class="right arrow icon"></i></div>
+                </div>
+            </a>
         </div>
     <% }) %>
-        <div>
-            <h3>
-                Total Learning Time:
-            </h3>
-             <p> <%= overallData.overallString %></p>
-        </div>
+
     </table>
     <hr>
 

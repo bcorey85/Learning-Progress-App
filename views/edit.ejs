@@ -1,30 +1,63 @@
 <% include partials/header %>
-<form action="/posts/<%= post._id %>?_method=PUT" METHOD="POST">
-        <div>
-            <input type="text" name="post[date]" value="<%= post.date %>" required>
+<div class="form-container">
+    <form action="/posts/<%= post.id %>?_method=PUT" METHOD="POST" class="ui form">
+
+        <div class="ui primary raised segment">
+            <div class="required field">
+                <label for="">Date</label>
+                <input type="text" name="post[date]" value="<%= post.date %>" id="dateInput" required>
+            </div>
+            <div class="required field">
+                <label for="">Notes</label>
+                <textarea name="post[notes]" id="" cols="30" rows="10" required><%=post.notes%></textarea>
+            </div>
+            <div class="two fields">
+                <div class="required field">
+                    <label for="">Start Time</label>
+                    <input type="text" name="post[start]" onchange="updateStart()" value="<%= post.start %>""  id="startInput" required>
+                </div>
+                <div class="required field">
+                    <label for="">End Time</label>
+                    <input type="text" name="post[end]" onchange="updateEnd()" value="<%= post.end %>""  id="endInput"
+                        required>
+                </div>
+            </div>
         </div>
-        <div>
-            <textarea name="post[notes]" id="" cols="30" rows="10" required><%=post.notes%></textarea>
+
+        <div class="ui secondary raised segment">
+            <div class="two fields">
+                <div class="field">
+                    <label for="">Total Mins</label>
+                    <input type="text" name="post[totalMin]" id="totalMin" value="<%= post.totalMin%>" readonly>
+                </div>
+                <div class="field">
+                    <label for="">Total Time</label>
+                    <input type="text" name="post[timeString]" value="<%= post.timeString%>" id="timeString" readonly>
+                </div>
+            </div>
+            <div class="ui item" align="center">
+                <a href="/posts/<%=post._id %>/edit" class="ui button">Reset</a>
+                <input class="ui button teal" type="submit">
+            </div>
         </div>
-        <div>
-            <input type="text" name="post[start]" onchange="updateStart()" value="<%= post.start %>" id="startInput" required>
-            <input type="text" name="post[end]" onchange="updateEnd()" value="<%= post.end %>" id="endInput" required>
+    </form>
+    <div class="ui grid secondary raised segment">
+        <div class="eight wide column">
+            <a class="ui button float right" href="/posts">Back</a>
         </div>
-        
-        <div>
-            <input type="text" name="post[totalMin]" value="<%= post.totalMin%>" id="totalMin" readonly>
-            <input type="text" name="post[timeString]" value="<%= post.timeString%>" id="timeString" readonly>
+        <div class="eight wide column right aligned">
+            <form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+                <button class="ui button red">Delete</button>
+            </form>
         </div>
-        <div>
-            <input type="submit">
-        </div>
-</form>
-<form action="/posts/<%= post._id %>?_method=DELETE" method="POST">
-    <button>Delete</button>
-</form>
-<a href="/posts">Back</a>
+    </div>
+</div>
+
+
 <script src="/moment.js"></script>
 <script src="/script.js"></script>
 
 <% include partials/footer %>
+
+
 

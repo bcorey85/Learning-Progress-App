@@ -1,25 +1,51 @@
 <% include partials/header %>
-    <form action="/posts" METHOD="POST">
-        <div>
-            <input type="text" name="post[date]" value="" id="dateInput" placeholder="Date" required>
-        </div>
-        <div>
-            <textarea name="post[notes]" id="" cols="30" rows="10" required placeholder="Notes"></textarea>
-        </div>
-        <div>
-            <input type="text" name="post[start]" onchange="updateStart()" placeholder="Start Time" id="startInput" required>
-            <input type="text" name="post[end]" onchange="updateEnd()" placeholder="End Time" id="endInput" required>
+<div class="form-container">
+
+    <form action="/posts" METHOD="POST" class="ui form">
+        <div class="ui primary raised segment">
+            <div class="required field">
+                <label for="">Date</label>
+                <input type="text" name="post[date]" value="" id="dateInput" placeholder="Date" required>
+            </div>
+            <div class="required field">
+                <label for="">Notes</label>
+                <textarea name="post[notes]" id="" cols="30" rows="10" required placeholder="Notes"></textarea>
+            </div>
+            <div class="two fields">
+                <div class="required field">
+                    <label for="">Start Time</label>
+                    <input type="text" name="post[start]" onchange="updateStart()" placeholder="Start Time" id="startInput"
+                        required>
+                </div>
+                <div class="required field">
+                    <label for="">End Time</label>
+                    <input type="text" name="post[end]" onchange="updateEnd()" placeholder="End Time" id="endInput" required>
+                </div>
+            </div>
         </div>
 
-        <div>
-            <input type="text" name="post[totalMin]" placeholder="Total Mins" id="totalMin" readonly>
-            <input type="text" name="post[timeString]" placeholder="Total Time" id="timeString" readonly>
+        <div class="ui secondary raised segment">
+            <div class="two fields">
+                <div class="field">
+                    <label for="">Total Mins</label>
+                    <input type="text" name="post[totalMin]" placeholder="Total Mins" id="totalMin" readonly>
+                </div>
+                <div class="field">
+                    <label for="">Total Time</label>
+                    <input type="text" name="post[timeString]" placeholder="Total Time" id="timeString" readonly>
+                </div>
+            </div>
+            <div class="ui item" align="center">
+                    <a href="/posts/new" class="ui button">Reset</a>
+                    <input class="ui button teal" type="submit">
+            </div>
         </div>
-        <div>
-        <input type="submit">
-        </div>    
     </form>
-    <a href="/posts">Cancel</a>
+    <div class="ui secondary raised segment">
+        <a class="ui button float right" href="/posts">Back</a>
+    </div>
+
+</div>
 <script src="/moment.js"></script>
 <script src="/script.js"></script>
 <% include partials/footer %>

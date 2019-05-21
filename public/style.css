@@ -1,8 +1,25 @@
-.container{
-    max-width: 700px;
+.form-container{
+    padding-top: 100px;
+    max-width: 600px;
     margin: auto;
-    text-align: center;
 }
+
+div.ui.container{
+    padding-top: 100px;
+}
+
+div.ui.card{
+    display: inline-block;
+    margin: 20px;
+    height: 230px;
+    width: 200px;
+    vertical-align: top;
+}
+
+div.description{
+    height:80px;
+}
+
 .post-thumbnail{
     border: 1px solid gray;
     margin: 2em auto;

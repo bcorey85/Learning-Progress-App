@@ -118,3 +118,4 @@ function calcOverallMin(arr){
     })
     return overallMin
 }
+

@@ -1,22 +1,53 @@
 <% include partials/header %>
 
-<div class="container">
-    <div class="post-large">
-        <h1><%= post.date %></h1>
-        <div>
-            <%= post.notes %>
+<div class="form-container">
+
+    <form class="ui form">
+        <div class="ui primary raised segment">
+            <div class="field">
+                <label for="">Date</label>
+                <input type="text" name="post[date]" value="<%= post.date %>" id="dateInput" readonly>
+            </div>
+            <div class="field">
+                <label for="">Notes</label>
+                <textarea name="post[notes]" id="" cols="30" rows="10" readonly><%=post.notes%></textarea>
+            </div>
+            <div class="two fields">
+                <div class="field">
+                    <label for="">Start Time</label>
+                    <input type="text" name="post[start]" onchange="updateStart()" value="<%= post.start %>""  id="
+                        startInput" readonly>
+                </div>
+                <div class="field">
+                    <label for="">End Time</label>
+                    <input type="text" name="post[end]" onchange="updateEnd()" value="<%= post.end %>""  id=" endInput"
+                        readonly>
+                </div>
+            </div>
         </div>
-        <div>
-            <%= post.start %>
-            <%= post.end %>
-            <%= post.totalMin %>
-            <%= post.timeString %>
+
+        <div class="ui secondary raised segment">
+            <div class="two fields">
+                <div class="field">
+                    <label for="">Total Mins</label>
+                    <input type="text" name="post[totalMin]" id="totalMin" value="<%= post.totalMin%>" readonly>
+                </div>
+                <div class="field">
+                    <label for="">Total Time</label>
+                    <input type="text" name="post[timeString]" value="<%= post.timeString%>" id="timeString" readonly>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="ui grid secondary raised segment">
+        <div class="eight wide column">
+            <a class="ui button" href="/posts">Back</a>
+        </div>
+        <div class="eight wide column right aligned">
+            <a href="/posts/<%= post._id %>/edit" class="ui button green">Edit</a>
         </div>
     </div>
-  
-    
-    <a href="/posts">Back</a>
-    <a href="/posts/<%= post._id %>/edit">Edit</a>
 </div>
+  
 
 <% include partials/footer %>

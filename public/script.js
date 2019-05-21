@@ -5,7 +5,10 @@ const stringInput = document.querySelector("#timeString")
 const dateInput = document.querySelector("#dateInput")
 const test = document.querySelector("#test")
 
-let start, end, duration, hours, minutes, minutesTotal
+let duration, hours, minutes, minutesTotal
+
+let start = moment(startInput.value, "HH:mm a")
+let end = moment(endInput.value, "HH:mm a")
 
 function updateStart(){
     start = moment(startInput.value, "HH:mm a")
@@ -34,8 +37,8 @@ function updateForms(){
 
 function parseDuration(duration){
     if (duration._milliseconds < 0) {
-        duration._milliseconds += 43200000
-        return duration
+        duration._milliseconds += 86400000
+         return duration
     } else {
         return duration
     }    
